@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AURELLE — Science-backed skincare</title>
+<meta name="description" content="Thoughtfully formulated skincare that works with your skin, not against it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ivory:#FAF6EE;--cream:#F1EADB;--beige:#E4D8C3;--sage:#8A9A7B;--sage-d:#4F5F47;--sage-l:#DCE3D0;--ink:#2A2E25;--mute:#6B6F62;--gold:#B39A5B;
+--serif:'Cormorant Garamond',Georgia,serif;--sans:'Manrope',system-ui,sans-serif;--r:22px;--sh:0 18px 40px -22px rgba(60,55,35,.35)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font:400 16px/1.65 var(--sans);color:var(--ink);background:var(--ivory);overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--sage-d);outline-offset:3px}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+section{padding:110px 0}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.01em}
+h2{font-size:clamp(2.1rem,4.4vw,3.6rem)}
+.lead{color:var(--mute);max-width:46ch}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;border-radius:99px;font-weight:600;font-size:.92rem;transition:.35s}
+.btn.dark{background:var(--sage-d);color:var(--ivory)}.btn.dark:hover{background:var(--ink);transform:translateY(-2px)}
+.btn.line{border:1.5px solid var(--sage-d);color:var(--sage-d)}.btn.line:hover{background:var(--sage-d);color:var(--ivory)}
+/* announcement + nav */
+.ann{background:var(--sage-d);color:var(--cream);text-align:center;font-size:.82rem;padding:9px 16px}
+header{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.86);backdrop-filter:blur(14px);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 8px 30px -20px rgba(0,0,0,.35)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+.logo{font:600 1.7rem var(--serif);letter-spacing:.28em}
+.links{display:flex;gap:34px;font-size:.92rem;font-weight:500}
+.links a{position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--sage-d);transition:.3s}
+.links a:hover::after{width:100%}
+.icons{display:flex;gap:6px;align-items:center}
+.ib{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;position:relative;transition:.25s}
+.ib:hover{background:var(--cream)}
+.ib svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#count{position:absolute;top:2px;right:0;min-width:18px;height:18px;border-radius:9px;background:var(--sage-d);color:#fff;font-size:.68rem;display:grid;place-items:center;transform:scale(0);transition:.3s}
+#count.on{transform:scale(1)}
+.burger{display:none}
+/* hero */
+.hero{padding:40px 0 90px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(3rem,7vw,6rem);margin-bottom:26px}
+.hero h1 em{font-style:italic;color:var(--sage-d)}
+.hero p{margin-bottom:36px}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.proof{display:flex;gap:28px;margin-top:48px;color:var(--mute);font-size:.86rem}
+.proof b{display:block;font:500 1.8rem var(--serif);color:var(--ink)}
+.stage{position:relative;aspect-ratio:4/5;max-height:680px;margin-left:auto;width:100%}
+.arch{position:absolute;inset:0 0 0 12%;border-radius:999px 999px 28px 28px;background:linear-gradient(170deg,var(--sage-l),var(--sage) 120%);overflow:hidden}
+.arch::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:rgba(250,246,238,.35);left:15%;top:8%;filter:blur(6px)}
+.arch .shelf{position:absolute;left:0;right:0;bottom:0;height:22%;background:var(--beige)}
+.prod{position:absolute;filter:drop-shadow(0 24px 22px rgba(40,50,30,.28))}
+.p1{width:34%;left:22%;bottom:14%;animation:fl 7s ease-in-out infinite}
+.p2{width:26%;left:50%;bottom:14%;animation:fl 8s ease-in-out -2s infinite}
+.p3{width:34%;left:68%;bottom:14%;transform:translateX(-12%)}
+@keyframes fl{50%{transform:translateY(-10px)}}
+.badge{position:absolute;left:0;bottom:10%;background:var(--ivory);padding:16px 20px;border-radius:18px;box-shadow:var(--sh);font-size:.82rem;max-width:200px;line-height:1.4}
+.badge b{font:500 1.5rem var(--serif);display:block}
+/* concerns */
+.head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:54px;flex-wrap:wrap}
+.cg{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cc{position:relative;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;display:flex;align-items:flex-end;padding:24px;transition:.5s}
+.cc:nth-child(2n){margin-top:44px}
+.cc:hover{transform:translateY(-8px);box-shadow:var(--sh)}
+.cc svg.bg{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s}
+.cc:hover svg.bg{transform:scale(1.08)}
+.cc div{position:relative;background:rgba(250,246,238,.92);border-radius:16px;padding:16px 18px;width:100%}
+.cc h3{font-size:1.5rem;margin-bottom:2px}.cc span{font-size:.82rem;color:var(--mute)}
+/* products */
+.best{background:var(--cream)}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{background:var(--ivory);border-radius:var(--r);padding:14px 14px 22px;transition:.4s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-8px);box-shadow:var(--sh)}
+.pimg{border-radius:16px;aspect-ratio:1/1.1;display:grid;place-items:center;overflow:hidden;margin-bottom:18px}
+.pimg svg{width:56%;transition:.5s}.card:hover .pimg svg{transform:scale(1.07) rotate(-2deg)}
+.card h3{font-size:1.45rem;padding:0 8px}
+.card p{font-size:.86rem;color:var(--mute);padding:0 8px;margin:6px 0 12px;flex:1}
+.meta{display:flex;justify-content:space-between;align-items:center;padding:0 8px;margin-bottom:16px}
+.stars{color:var(--gold);letter-spacing:2px;font-size:.9rem}.stars small{color:var(--mute);letter-spacing:0;margin-left:6px}
+.price{font-weight:600}
+.add{margin:0 8px;padding:13px;border-radius:99px;border:1.5px solid var(--sage-d);color:var(--sage-d);font-weight:600;font-size:.88rem;transition:.3s}
+.add:hover,.add.done{background:var(--sage-d);color:var(--ivory)}
+/* ingredients */
+.ing{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.ingimg{aspect-ratio:1;border-radius:var(--r);display:grid;place-items:center;transition:background .6s;position:relative;overflow:hidden}
+.ingimg svg{width:68%}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0}
+.tab{padding:10px 20px;border-radius:99px;background:var(--cream);font-size:.88rem;font-weight:500;transition:.3s}
+.tab[aria-selected=true]{background:var(--sage-d);color:var(--ivory)}
+#ingtxt{min-height:150px}
+#ingtxt h3{font-size:2rem;margin-bottom:10px}
+#ingtxt li{margin-top:6px;color:var(--mute);margin-left:18px}
+/* routine */
+.routine{background:var(--sage-l)}
+.rt{text-align:center;max-width:720px;margin:0 auto 56px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:46px}
+.step{background:var(--ivory);border-radius:var(--r);padding:26px;text-align:left;border:2px solid transparent;transition:.35s}
+.step:hover,.step.on{border-color:var(--sage-d);transform:translateY(-6px)}
+.step .art{height:170px;display:grid;place-items:center;background:var(--cream);border-radius:14px;margin-bottom:20px}
+.step .art svg{height:84%}
+.step h3{font-size:1.7rem}.step p{font-size:.9rem;color:var(--mute);margin:6px 0 12px}
+.step small{font-weight:600;color:var(--sage-d)}
+.center{text-align:center}
+/* philosophy */
+.phil{background:var(--sage-d);color:var(--cream);position:relative;overflow:hidden}
+.phil h2{font-size:clamp(3rem,9vw,8rem);line-height:.95;max-width:11ch}
+.phil h2 i{color:var(--sage-l)}
+.pcols{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:end}
+.pcols p{color:rgba(241,234,219,.8);margin-bottom:22px}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pills span{border:1px solid rgba(241,234,219,.4);border-radius:99px;padding:8px 18px;font-size:.85rem}
+.ring{position:absolute;right:-12vw;top:-12vw;width:44vw;aspect-ratio:1;border-radius:50%;border:1px solid rgba(241,234,219,.18);box-shadow:0 0 0 60px rgba(241,234,219,.04),0 0 0 120px rgba(241,234,219,.03)}
+.phil .wrap{position:relative}
+/* reviews */
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rev{background:var(--cream);border-radius:var(--r);padding:34px;display:flex;flex-direction:column;gap:18px}
+.rev q{font:400 1.35rem/1.35 var(--serif);flex:1;quotes:none}
+.who{display:flex;gap:12px;align-items:center;font-size:.85rem}
+.av{width:44px;height:44px;border-radius:50%;background:var(--sage);color:#fff;display:grid;place-items:center;font:500 1.2rem var(--serif)}
+.who span{display:block;color:var(--mute)}
+/* newsletter */
+.news{padding:0 0 110px}
+.nbox{background:var(--beige);border-radius:36px;padding:80px 28px;text-align:center}
+.nbox p{margin:14px auto 32px;color:var(--mute)}
+form{display:flex;gap:10px;max-width:480px;margin:auto;background:var(--ivory);border-radius:99px;padding:6px}
+form input{flex:1;min-width:0;border:0;background:none;padding:0 20px;font:inherit;outline:none}
+#msg{margin-top:18px;min-height:26px;font-weight:600;color:var(--sage-d)}
+#msg.err{color:#9a4a3a}
+/* footer */
+footer{background:var(--ink);color:var(--cream);padding:70px 0 30px}
+.fg{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px;margin-bottom:50px}
+footer .logo{margin-bottom:12px;display:block}
+footer p{color:rgba(241,234,219,.6);font-size:.88rem;max-width:30ch}
+footer h4{font:500 1.2rem var(--serif);margin-bottom:14px}
+footer li{list-style:none;margin-bottom:8px;font-size:.88rem;color:rgba(241,234,219,.7)}
+footer li a:hover{color:#fff}
+.legal{border-top:1px solid rgba(241,234,219,.15);padding-top:22px;font-size:.8rem;color:rgba(241,234,219,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+/* bag drawer */
+#drawer{position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:var(--ivory);z-index:80;transform:translateX(105%);transition:.45s cubic-bezier(.2,.8,.2,1);padding:28px;display:flex;flex-direction:column;box-shadow:-20px 0 50px -30px rgba(0,0,0,.4)}
+#drawer.open{transform:none}
+#veil{position:fixed;inset:0;background:rgba(30,32,25,.4);opacity:0;pointer-events:none;transition:.4s;z-index:70}
+#veil.on{opacity:1;pointer-events:auto}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.dh h3{font-size:2rem}
+#items{flex:1;overflow:auto}
+.it{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--beige);font-size:.9rem}
+.it .th{width:54px;height:54px;border-radius:12px;display:grid;place-items:center}.it .th svg{height:80%}
+.it div{flex:1}.it b{display:block;font-weight:600}
+.it button{color:var(--mute);font-size:.8rem;text-decoration:underline}
+.tot{display:flex;justify-content:space-between;font-weight:600;padding:18px 0}
+.empty{color:var(--mute);padding:30px 0}
+.ship{font-size:.82rem;color:var(--sage-d);margin-bottom:10px}
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+/* responsive */
+@media(max-width:980px){
+ section{padding:80px 0}
+ .cg,.pg{grid-template-columns:repeat(2,1fr)}
+ .ing,.pcols{grid-template-columns:1fr;gap:40px}
+ .rg,.steps{grid-template-columns:1fr}
+ .fg{grid-template-columns:1fr 1fr}
+ .hero .wrap{grid-template-columns:1fr}
+ .stage{max-width:520px;margin:20px auto 0}
+ .burger{display:grid}
+ .links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--ivory);padding:8px 24px 20px;box-shadow:0 20px 30px -20px rgba(0,0,0,.3);display:none}
+ .links.open{display:flex}.links a{padding:14px 0;border-bottom:1px solid var(--beige)}
+}
+@media(max-width:560px){
+ .pg,.cg{grid-template-columns:1fr}.cc:nth-child(2n){margin-top:0}.cc{aspect-ratio:4/3}
+ .fg{grid-template-columns:1fr}.logo{font-size:1.4rem}.proof{gap:18px}
+ form{flex-direction:column;border-radius:26px;padding:10px}form input{padding:12px 16px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="ann">Free shipping on orders above ₹999</div>
+<header id="hd"><div class="wrap nav">
+ <a href="#top" class="logo" id="top">AURELLE</a>
+ <nav class="links" id="links" aria-label="Main">
+  <a href="#shop">Shop</a><a href="#concerns">Skin Concerns</a><a href="#ingredients">Ingredients</a><a href="#story">Our Story</a>
+ </nav>
+ <div class="icons">
+  <button class="ib" aria-label="Search" onclick="toast('Search is coming soon')"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+  <button class="ib" aria-label="Account" onclick="toast('Sign in is coming soon')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button>
+  <button class="ib" aria-label="Open bag" id="bagBtn"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span id="count">0</span></button>
+  <button class="ib burger" id="burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
+ </div>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+ <div>
+  <h1>Your skin, in its most <em>beautiful</em> form.</h1>
+  <p class="lead">Thoughtfully formulated skincare that works with your skin, not against it.</p>
+  <div class="ctas"><a href="#shop" class="btn dark">Explore Skincare</a><a href="#routine" class="btn line">Discover Your Routine</a></div>
+  <div class="proof"><div><b>4.8</b>average rating</div><div><b>12k+</b>routines built</div><div><b>100%</b>dermatologist tested</div></div>
+ </div>
+ <div class="stage">
+  <div class="arch"><div class="shelf"></div>
+   <div class="prod p1" data-art="bottle" data-c="#F1EADB"></div>
+   <div class="prod p2" data-art="tube" data-c="#DCE3D0"></div>
+   <div class="prod p3" data-art="jar" data-c="#E4D8C3"></div>
+  </div>
+  <div class="badge"><b>10% niacinamide</b>Clinically studied on Indian skin tones and climates.</div>
+ </div>
+</div></section>
+
+<section id="concerns"><div class="wrap">
+ <div class="head rv"><h2>Skincare that understands your skin.</h2><p class="lead">Start with what your skin is telling you. We'll point you to the formulas that help.</p></div>
+ <div class="cg" id="cg"></div>
+</div></section>
+
+<section class="best" id="shop"><div class="wrap">
+ <div class="head rv"><h2>Bestsellers, loved daily.</h2><a href="#" class="btn line" onclick="toast('Full shop is coming soon');return false">View all products</a></div>
+ <div class="pg" id="pg"></div>
+</div></section>
+
+<section id="ingredients"><div class="wrap ing">
+ <div class="ingimg rv" id="ingimg"></div>
+ <div class="rv">
+  <h2>Good skincare begins with good ingredients.</h2>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div id="ingtxt" aria-live="polite"></div>
+ </div>
+</div></section>
+
+<section class="routine" id="routine"><div class="wrap">
+ <div class="rt rv"><h2>Your skin deserves a routine of its own.</h2><p class="lead" style="margin:16px auto 0">Three steps, morning and night. Tap a step to see what goes into it.</p></div>
+ <div class="steps rv" id="steps"></div>
+ <div class="center rv"><button class="btn dark" id="build">Build My Routine</button><p id="rnote" style="margin-top:14px;font-size:.88rem;color:var(--sage-d);min-height:24px"></p></div>
+</div></section>
+
+<section class="phil" id="story"><div class="ring"></div><div class="wrap">
+ <div class="pcols">
+  <h2 class="rv">Less noise. <i>More nourishment.</i></h2>
+  <div class="rv">
+   <p>AURELLE began with a simple question: why are routines so complicated? We believe in fewer steps, formulas that are kind to your skin barrier, and results you can see in the mirror.</p>
+   <p>Every product is made with proven actives at honest concentrations, tested in Indian humidity, heat and city air.</p>
+   <div class="pills"><span>Simple routines</span><span>Thoughtful formulas</span><span>Healthy-looking skin</span></div>
+  </div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="head rv"><h2>Skin that speaks for itself.</h2><p class="lead">Real words from people who made AURELLE part of their day.</p></div>
+ <div class="rg rv">
+  <div class="rev"><div class="stars">★★★★★</div><q>My skin used to feel tight by noon. The Dew Drop serum changed that within two weeks, and it doesn't feel sticky in Mumbai humidity.</q><div class="who"><div class="av">A</div><div>Ananya R., Mumbai<span>Dew Drop Hydrating Serum</span></div></div></div>
+  <div class="rev"><div class="stars">★★★★★</div><q>Finally an SPF with no white cast on my skin tone. I wear it every day, even when I'm working from home.</q><div class="who"><div class="av">K</div><div>Karthik M., Bengaluru<span>Daily Veil SPF 50</span></div></div></div>
+  <div class="rev"><div class="stars">★★★★☆</div><q>I over-exfoliated for years. The Barrier Repair Cream calmed the redness, and the cleanser is gentle enough for night too.</q><div class="who"><div class="av">S</div><div>Simran K., Delhi<span>Barrier Repair Cream</span></div></div></div>
+ </div>
+</div></section>
+
+<section class="news"><div class="wrap"><div class="nbox rv">
+ <h2>A little glow in your inbox.</h2>
+ <p>Discover skincare tips, ingredient stories and exclusive offers.</p>
+ <form id="nf" novalidate><input type="email" id="em" placeholder="Your email address" aria-label="Email address" required><button class="btn dark" type="submit">Subscribe</button></form>
+ <div id="msg" role="status"></div>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">
+ <div class="fg">
+  <div><span class="logo">AURELLE</span><p>Science-backed skincare, made for how you live.</p></div>
+  <div><h4>Shop</h4><ul><li><a href="#shop">Bestsellers</a></li><li><a href="#concerns">By concern</a></li><li><a href="#routine">Routines</a></li></ul></div>
+  <div><h4>Company</h4><ul><li><a href="#story">About Us</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQs</a></li><li><a href="#">Instagram</a></li></ul></div>
+  <div><h4>Help</h4><ul><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+ </div>
+ <div class="legal"><span>© 2026 AURELLE. A fictional brand created for design purposes.</span><span>Made with care in India</span></div>
+</div></footer>
+
+<div id="veil"></div>
+<aside id="drawer" aria-label="Shopping bag" aria-hidden="true">
+ <div class="dh"><h3>Your bag</h3><button class="ib" id="close" aria-label="Close bag">✕</button></div>
+ <div id="items"></div>
+ <div class="ship" id="ship"></div>
+ <div class="tot"><span>Subtotal</span><span id="sub">₹0</span></div>
+ <button class="btn dark" style="justify-content:center" onclick="toast('Checkout is a demo')">Checkout</button>
+</aside>
+<div id="toast" style="position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);background:var(--ink);color:var(--cream);padding:12px 24px;border-radius:99px;font-size:.88rem;opacity:0;transition:.4s;z-index:90;pointer-events:none"></div>
+
+<script>
+/* ---------- Product illustrations (inline SVG, no external images needed) ---------- */
+const ART={
+ bottle:c=>`<svg viewBox="0 0 120 220"><rect x="52" y="6" width="16" height="22" rx="4" fill="#4F5F47"/><rect x="40" y="22" width="34" height="8" rx="3" fill="#4F5F47"/><rect x="48" y="30" width="24" height="16" fill="#B39A5B"/><rect x="18" y="44" width="84" height="170" rx="22" fill="${c}"/><rect x="18" y="44" width="22" height="170" rx="11" fill="#fff" opacity=".35"/><rect x="38" y="104" width="44" height="56" rx="4" fill="#FAF6EE"/><path d="M46 122h28M46 132h20M46 142h24" stroke="#4F5F47" stroke-width="2" stroke-linecap="round"/></svg>`,
+ tube:c=>`<svg viewBox="0 0 120 220"><path d="M26 6h68l8 22H18z" fill="#4F5F47"/><path d="M20 28h80l-8 184H28z" fill="${c}"/><path d="M20 28h22l-6 184H28z" fill="#fff" opacity=".35"/><rect x="40" y="82" width="42" height="56" rx="4" fill="#FAF6EE"/><path d="M48 100h26M48 110h18M48 120h22" stroke="#4F5F47" stroke-width="2" stroke-linecap="round"/></svg>`,
+ jar:c=>`<svg viewBox="0 0 160 160"><rect x="14" y="26" width="132" height="34" rx="12" fill="#4F5F47"/><rect x="14" y="26" width="132" height="10" rx="5" fill="#fff" opacity=".2"/><rect x="20" y="58" width="120" height="86" rx="20" fill="${c}"/><rect x="20" y="58" width="26" height="86" rx="13" fill="#fff" opacity=".35"/><rect x="52" y="82" width="56" height="36" rx="4" fill="#FAF6EE"/><path d="M62 94h36M62 104h24" stroke="#4F5F47" stroke-width="2" stroke-linecap="round"/></svg>`,
+ dropper:c=>`<svg viewBox="0 0 120 220"><ellipse cx="60" cy="22" rx="14" ry="20" fill="#4F5F47"/><rect x="38" y="38" width="44" height="22" rx="5" fill="#B39A5B"/><rect x="22" y="58" width="76" height="152" rx="20" fill="${c}"/><rect x="22" y="58" width="20" height="152" rx="10" fill="#fff" opacity=".35"/><rect x="38" y="108" width="44" height="52" rx="4" fill="#FAF6EE"/><path d="M46 124h28M46 134h18M46 144h24" stroke="#4F5F47" stroke-width="2" stroke-linecap="round"/></svg>`,
+ spf:c=>`<svg viewBox="0 0 120 220"><rect x="30" y="4" width="60" height="26" rx="8" fill="#4F5F47"/><path d="M26 30h68l-4 180H30z" fill="${c}"/><path d="M26 30h20l-4 180H30z" fill="#fff" opacity=".35"/><circle cx="60" cy="100" r="22" fill="#FAF6EE"/><text x="60" y="97" text-anchor="middle" font-family="Georgia" font-size="11" fill="#4F5F47">SPF</text><text x="60" y="112" text-anchor="middle" font-family="Georgia" font-size="15" font-weight="700" fill="#4F5F47">50</text></svg>`
+};
+document.querySelectorAll('[data-art]').forEach(e=>e.innerHTML=ART[e.dataset.art](e.dataset.c));
+
+/* ---------- Data ---------- */
+const PRODUCTS=[
+ {id:1,n:'Gentle Cloud Cleanser',d:'A soft-foam gel that lifts sunscreen and city grime without stripping.',p:699,a:'tube',c:'#DCE3D0',bg:'#EEF1E6',r:4.8,k:'2.1k'},
+ {id:2,n:'Dew Drop Hydrating Serum',d:'Three weights of hyaluronic acid for plump, lasting moisture.',p:1199,a:'dropper',c:'#F1EADB',bg:'#E7EBDC',r:4.9,k:'3.4k'},
+ {id:3,n:'Barrier Repair Cream',d:'Ceramides and niacinamide to calm redness and restore comfort.',p:899,a:'jar',c:'#E4D8C3',bg:'#F4EBDA',r:4.7,k:'1.8k'},
+ {id:4,n:'Daily Veil SPF 50',d:'Lightweight, invisible sun protection with no white cast.',p:799,a:'spf',c:'#DCE3D0',bg:'#EFE7D4',r:4.8,k:'2.6k'}
+];
+const CONCERNS=[
+ {n:'Hydration',s:'Water-rich, bouncy skin',g:['#CFDCCB','#8A9A7B'],m:'<circle cx="50" cy="42" r="22" fill="#FAF6EE" opacity=".5"/><path d="M50 14c14 20 20 28 20 38a20 20 0 0 1-40 0c0-10 6-18 20-38z" fill="#FAF6EE" opacity=".7"/>'},
+ {n:'Acne & Blemishes',s:'Clearer, calmer skin',g:['#E9DFC8','#B5B08A'],m:'<circle cx="34" cy="36" r="12" fill="#FAF6EE" opacity=".6"/><circle cx="66" cy="30" r="8" fill="#FAF6EE" opacity=".5"/><circle cx="58" cy="62" r="16" fill="#FAF6EE" opacity=".7"/>'},
+ {n:'Uneven Skin Tone',s:'Brighter, more even glow',g:['#F1E3CC','#C9AE85'],m:'<circle cx="50" cy="45" r="28" fill="#FAF6EE" opacity=".55"/><circle cx="50" cy="45" r="14" fill="#FAF6EE" opacity=".8"/>'},
+ {n:'Skin Barrier Care',s:'Strong, resilient skin',g:['#D9DFCB','#6F8262'],m:'<path d="M50 12 78 24v22c0 18-12 30-28 38C34 76 22 64 22 46V24z" fill="#FAF6EE" opacity=".7"/>'}
+];
+const ING=[
+ {n:'Niacinamide',t:'Refines the look of pores and evens tone.',l:['Visibly minimizes pores','Balances excess oil','Found in Gentle Cloud Cleanser'],c:'#DCE3D0',m:'<circle cx="100" cy="100" r="46" fill="none" stroke="#4F5F47" stroke-width="3"/><circle cx="100" cy="54" r="10" fill="#4F5F47"/><circle cx="140" cy="123" r="10" fill="#8A9A7B"/><circle cx="60" cy="123" r="10" fill="#8A9A7B"/>'},
+ {n:'Hyaluronic Acid',t:'Holds many times its weight in water for deep, lasting hydration.',l:['Plumps fine dehydration lines','Lightweight, non-sticky feel','Found in Dew Drop Serum'],c:'#E9E4CF',m:'<path d="M100 40c26 34 38 50 38 70a38 38 0 0 1-76 0c0-20 12-36 38-70z" fill="#8A9A7B" opacity=".75"/><path d="M84 110a16 16 0 0 0 16 16" stroke="#FAF6EE" stroke-width="5" fill="none" stroke-linecap="round"/>'},
+ {n:'Ceramides',t:'Skin-identical lipids that reinforce your moisture barrier.',l:['Reduces dryness and tightness','Helps soothe irritation','Found in Barrier Repair Cream'],c:'#EADFCB',m:'<rect x="56" y="62" width="88" height="18" rx="9" fill="#B39A5B" opacity=".8"/><rect x="56" y="91" width="88" height="18" rx="9" fill="#8A9A7B"/><rect x="56" y="120" width="88" height="18" rx="9" fill="#4F5F47" opacity=".85"/>'},
+ {n:'Vitamin C',t:'A stable antioxidant that brightens and defends against daily stress.',l:['Fades the look of dark spots','Supports a radiant glow','Found in the Brightening Range'],c:'#F1E6C8',m:'<circle cx="100" cy="100" r="40" fill="#E2B94F" opacity=".85"/><path d="M100 60c0-16 14-22 26-22-2 14-10 22-26 22z" fill="#6F8262"/><path d="M72 88a30 30 0 0 1 20-16" stroke="#FAF6EE" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>'}
+];
+const STEPS=[
+ {n:'Cleanse',d:'Remove the day without disturbing your barrier.',pid:1},
+ {n:'Treat',d:'Target hydration, tone or texture with a focused serum.',pid:2},
+ {n:'Hydrate & Protect',d:'Seal in moisture, then shield with SPF 50 by day.',pid:3}
+];
+const inr=v=>'₹'+v.toLocaleString('en-IN');
+const $=s=>document.querySelector(s);
+
+/* ---------- Render ---------- */
+$('#cg').innerHTML=CONCERNS.map((c,i)=>`<a href="#shop" class="cc rv" style="transition-delay:${i*.08}s">
+ <svg class="bg" viewBox="0 0 100 130" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c.g[0]}"/><stop offset="1" stop-color="${c.g[1]}"/></linearGradient></defs><rect width="100" height="130" fill="url(#g${i})"/><g transform="translate(0,6)">${c.m}</g></svg>
+ <div><h3>${c.n}</h3><span>${c.s}</span></div></a>`).join('');
+
+$('#pg').innerHTML=PRODUCTS.map((p,i)=>`<article class="card rv" style="transition-delay:${i*.08}s">
+ <div class="pimg" style="background:${p.bg}">${ART[p.a](p.c)}</div>
+ <h3>${p.n}</h3><p>${p.d}</p>
+ <div class="meta"><span class="stars">${'★'.repeat(Math.round(p.r))}<small>${p.r} (${p.k})</small></span><span class="price">${inr(p.p)}</span></div>
+ <button class="add" data-id="${p.id}">Add to Bag</button></article>`).join('');
+
+$('#tabs').innerHTML=ING.map((g,i)=>`<button class="tab" role="tab" aria-selected="${i==0}" data-i="${i}">${g.n}</button>`).join('');
+function showIng(i){const g=ING[i];
+ document.querySelectorAll('.tab').forEach((t,j)=>t.setAttribute('aria-selected',j==i));
+ $('#ingimg').style.background=g.c;$('#ingimg').innerHTML=`<svg viewBox="0 0 200 200">${g.m}</svg>`;
+ $('#ingtxt').innerHTML=`<h3>${g.n}</h3><p class="lead">${g.t}</p><ul>${g.l.map(x=>`<li>${x}</li>`).join('')}</ul>`}
+$('#tabs').onclick=e=>{const b=e.target.closest('.tab');if(b)showIng(+b.dataset.i)};
+showIng(0);
+
+$('#steps').innerHTML=STEPS.map((s,i)=>{const p=PRODUCTS[s.pid-1];return `<button class="step ${i==0?'on':''}" data-pid="${s.pid}">
+ <div class="art">${ART[p.a](p.c)}</div><h3>${s.n}</h3><p>${s.d}</p><small>${p.n} · ${inr(p.p)}</small></button>`}).join('');
+$('#steps').onclick=e=>{const b=e.target.closest('.step');if(!b)return;document.querySelectorAll('.step').forEach(x=>x.classList.remove('on'));b.classList.add('on')};
+
+/* ---------- Bag ---------- */
+const bag={};
+const FREE=999;
+function renderBag(){
+ const ids=Object.keys(bag);let n=0,sub=0;
+ $('#items').innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS[id-1],q=bag[id];n+=q;sub+=q*p.p;
+  return `<div class="it"><div class="th" style="background:${p.bg}">${ART[p.a](p.c)}</div><div><b>${p.n}</b>${q} × ${inr(p.p)}</div><button data-rm="${id}">Remove</button></div>`}).join(''):'<p class="empty">Your bag is empty. Add a product to begin your routine.</p>';
+ $('#count').textContent=n;$('#count').classList.toggle('on',n>0);$('#sub').textContent=inr(sub);
+ $('#ship').textContent=!sub?'':sub>=FREE?'You\u2019ve unlocked free shipping.':`Add ${inr(FREE-sub)} more for free shipping.`}
+function add(id){bag[id]=(bag[id]||0)+1;renderBag()}
+$('#items').onclick=e=>{const r=e.target.dataset.rm;if(r){delete bag[r];renderBag()}};
+$('#pg').onclick=e=>{const b=e.target.closest('.add');if(!b)return;add(b.dataset.id);
+ b.textContent='Added';b.classList.add('done');setTimeout(()=>{b.textContent='Add to Bag';b.classList.remove('done')},1400);toast('Added to your bag')};
+$('#build').onclick=()=>{STEPS.forEach(s=>add(s.pid));$('#rnote').textContent='Your 3-step routine is in your bag.';openBag()};
+function openBag(){$('#drawer').classList.add('open');$('#veil').classList.add('on');$('#drawer').setAttribute('aria-hidden','false')}
+function closeBag(){$('#drawer').classList.remove('open');$('#veil').classList.remove('on');$('#drawer').setAttribute('aria-hidden','true')}
+$('#bagBtn').onclick=openBag;$('#close').onclick=closeBag;$('#veil').onclick=closeBag;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBag()});
+renderBag();
+
+/* ---------- Toast ---------- */
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.style.opacity=1;t.style.transform='translate(-50%,0)';clearTimeout(tt);tt=setTimeout(()=>{t.style.opacity=0;t.style.transform='translate(-50%,30px)'},2200)}
+
+/* ---------- Nav ---------- */
+const hd=$('#hd');addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>10),{passive:true});
+$('#burger').onclick=function(){const o=$('#links').classList.toggle('open');this.setAttribute('aria-expanded',o)};
+$('#links').onclick=e=>{if(e.target.tagName==='A')$('#links').classList.remove('open')};
+
+/* ---------- Newsletter ---------- */
+$('#nf').onsubmit=e=>{e.preventDefault();const v=$('#em').value.trim(),m=$('#msg');
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){m.className='err';m.textContent='Enter a valid email address, like name@example.com.';return}
+ m.className='';m.textContent='Thank you for subscribing. Your first note is on its way.';$('#em').value=''};
+
+/* ---------- Reveal on scroll ---------- */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
